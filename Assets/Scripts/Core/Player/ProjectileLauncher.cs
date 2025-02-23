@@ -13,14 +13,16 @@ public class ProjectileLauncher : NetworkBehaviour
     [SerializeField] private Transform _projectileSpawnPoint;
     [SerializeField] private GameObject _muzzleFlash;
     [SerializeField] private Collider2D _playerCollider;
+    [SerializeField] private CoinWallet _wallet;
     [Header("Projectile Settings:")]
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _fireRate;
     [SerializeField] private float _muzzleFlashDuration;
+    [SerializeField] private int _costToFire;
 
     private bool fire;
-    private float previousFireTime;
     private float muzzleFlashTimer;
+    private float timer;
 
     public override void OnNetworkSpawn()
     {
@@ -48,19 +50,30 @@ public class ProjectileLauncher : NetworkBehaviour
         }
 
         if (!IsOwner) return;
-        if(!fire) return;
 
-        if (Time.time < (1 / _fireRate) + previousFireTime) return;
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if (!fire) return;
+
+        if (timer > 0) return;
+
+        if (_wallet.totalCoins.Value < _costToFire) return;
 
         SpawnServerProjectileServerRpc(_projectileSpawnPoint.position, _projectileSpawnPoint.up);
         SpawnDummyProjectile(_projectileSpawnPoint.position, _projectileSpawnPoint.up);
-        
-        previousFireTime = Time.time;
+
+        timer = 1 / _fireRate;
     }
 
     [ServerRpc]
     private void SpawnServerProjectileServerRpc(Vector3 SpawnPos, Vector3 direction)
     {
+        if (_wallet.totalCoins.Value < _costToFire) return;
+        _wallet.SpendCoins(_costToFire);
+
         GameObject ServerProjectile = Instantiate(
             _serverProjectilePrefab,
             SpawnPos,
