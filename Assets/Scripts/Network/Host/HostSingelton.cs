@@ -6,7 +6,7 @@ using UnityEngine;
 public class HostSingelton : MonoBehaviour
 {
     private static HostSingelton _instance;
-    private HostGameManager _gameManager;
+    public HostGameManager GameManager { get; private set; }
     public static HostSingelton Instance
     {
         get
@@ -30,6 +30,6 @@ public class HostSingelton : MonoBehaviour
 
     public void CreateHost()
     {
-        _gameManager = new HostGameManager();
+        GameManager = new HostGameManager();
     }
 }
