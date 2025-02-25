@@ -23,6 +23,7 @@ public class HostSingelton : MonoBehaviour
             return _instance;
         }
     }
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
