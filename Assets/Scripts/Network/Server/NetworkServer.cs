@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ public class NetworkServer : IDisposable
 
 
         response.Approved = true;
+        response.Position = SpawnPoints.GetRandomSpawnPoint();
+        response.Rotation = quaternion.identity;
         response.CreatePlayerObject = true;
     }
 
