@@ -1378,7 +1378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba8f2e52546c974ebb72960fbc43747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 4032754988823094000, guid: 0c0b24ba78d6293419ef70f34291c91d, type: 3}
+  playerPrefab: {fileID: 6840312060692435775, guid: 0c0b24ba78d6293419ef70f34291c91d, type: 3}
+  KeptCoinPercent: 50
 --- !u!1 &789518633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,6 +2219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeaderBoardEntityHolder: {fileID: 2103680343}
   leaderBoardEntityPrefab: {fileID: 4932777660821339153, guid: 646bb1b46b52dce4098124e20b182942, type: 3}
+  entitiesToDisplay: 8
 --- !u!114 &1384184414
 MonoBehaviour:
   m_ObjectHideFlags: 0
