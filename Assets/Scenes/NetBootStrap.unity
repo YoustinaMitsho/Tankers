@@ -1283,7 +1283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clientPrefab: {fileID: 8067316508839040411, guid: 9125879ffe005364fa8ab1fcb1c6933d, type: 3}
   _hostPrefab: {fileID: 4149482808021030305, guid: db38f5a4df2dcff47adb01c9ddcff566, type: 3}
-  _serverPrefab: {fileID: 2249675682040225602, guid: 0c1a704046cb89a4db5e5f2071ec089d, type: 3}
 --- !u!4 &1656806972
 Transform:
   m_ObjectHideFlags: 0

@@ -53,10 +53,10 @@ public class ClientGameManager : IDisposable
         RelayServerData relayServerData = new RelayServerData(joinAllocation, "udp");
         transport.SetRelayServerData(relayServerData);
 
-        GameData userData = new GameData
+        UserData userData = new UserData
         {
             UserName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing Name"),
-            userAuthId = AuthenticationService.Instance.PlayerId
+            AuthId = AuthenticationService.Instance.PlayerId
         };
         string payload = JsonUtility.ToJson(userData);
         byte[] payloadBytes = Encoding.UTF8.GetBytes(payload);

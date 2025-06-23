@@ -80,10 +80,10 @@ public class HostGameManager : IDisposable
 
         NetworkServer = new NetworkServer(NetworkManager.Singleton);
 
-        GameData userData = new GameData
+        UserData userData = new UserData
         {
             UserName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing Name"),
-            userAuthId = AuthenticationService.Instance.PlayerId
+            AuthId = AuthenticationService.Instance.PlayerId
         };
         string payload = JsonUtility.ToJson(userData);
         byte[] payloadBytes = Encoding.UTF8.GetBytes(payload);
