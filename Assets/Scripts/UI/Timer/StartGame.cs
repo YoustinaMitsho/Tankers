@@ -10,6 +10,8 @@ public class StartGame : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        Time.timeScale = 1f;
+
         if (!IsHost)
         {
             startGameButton.SetActive(false);

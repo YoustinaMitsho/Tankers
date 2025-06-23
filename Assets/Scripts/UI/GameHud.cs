@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class GameHud : MonoBehaviour
 {
+    [SerializeField] private GameObject startGameButton;
+
+    private void Awake()
+    {
+        startGameButton.SetActive(true);
+    }
+
+
     public void LeaveGame()
     {
         if (NetworkManager.Singleton.IsHost)
@@ -14,15 +22,16 @@ public class GameHud : MonoBehaviour
         }
 
         ClientSingelton.Instance.GameManager.Disconnect();
+        Time.timeScale = 1f;
     }
 
-    public void StartGame()
+    public async void StartGame()
     {
         if (!NetworkManager.Singleton.IsHost) return;
 
         FindObjectOfType<TimerManger>().StartTimer();
 
-        HostSingelton.Instance.GameManager.DeleteLobby();
+        await HostSingelton.Instance.GameManager.DeleteLobby();
 
         NetworkManager.Singleton.ConnectionApprovalCallback = (request, response) =>
         {

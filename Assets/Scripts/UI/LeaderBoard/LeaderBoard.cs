@@ -161,4 +161,19 @@ public class LeaderBoard : NetworkBehaviour
             }
         }
     }
+
+    public string GetTopPlayerName()
+    {
+        if (leaderBoardEntities.Count == 0) return "No one";
+
+        List<LeaderBoardEntityState> copy = new List<LeaderBoardEntityState>();
+        foreach (var entity in leaderBoardEntities)
+        {
+            copy.Add(entity);
+        }
+
+        var topPlayer = copy.OrderByDescending(p => p.Coins).First();
+        return topPlayer.PlayerName.ToString();
+    }
+
 }

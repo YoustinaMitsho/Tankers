@@ -49,7 +49,7 @@ public class InputReader : ScriptableObject, IPlayerActions
         AimPosition =  context.ReadValue<Vector2>();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         controls.Player.Disable();
     }
