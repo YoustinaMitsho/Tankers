@@ -104,6 +104,7 @@ public class HostGameManager : IDisposable
         }
     }
 
+
     public void Dispose()
     {
         ShutDown();
@@ -113,22 +114,28 @@ public class HostGameManager : IDisposable
     {
         HostSingelton.Instance.StopCoroutine(nameof(HeartBeatLobby));
 
+        await DeleteLobby();
+
+        NetworkServer.OnClientLeft -= HandleClientLeft;
+        NetworkServer?.Dispose();
+    }
+
+    public async Task DeleteLobby()
+    {
         if (!string.IsNullOrEmpty(lobbyID))
         {
             try
             {
                 await Lobbies.Instance.DeleteLobbyAsync(lobbyID);
+                lobbyID = string.Empty;
             }
             catch (LobbyServiceException e)
             {
-                Debug.LogError(e);
+                Debug.LogError($"Failed to delete lobby: {e.Message}");
             }
-
-            lobbyID = string.Empty;
         }
-        NetworkServer.OnClientLeft -= HandleClientLeft;
-        NetworkServer?.Dispose();
     }
+
 
     private async void HandleClientLeft(string authID)
     {
