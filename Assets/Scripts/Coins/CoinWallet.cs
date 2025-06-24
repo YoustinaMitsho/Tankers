@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CoinWallet : NetworkBehaviour
 {
-    [Header("Referrences")]
+    [Header("References")]
     [SerializeField] private BountyCoin coinPrefab;
     [SerializeField] private Health health;
 

@@ -39,6 +39,11 @@ public class GameHud : MonoBehaviour
             response.Reason = "Game already started";
         };
 
+        TankPlayer[] players = FindObjectsByType<TankPlayer>(FindObjectsSortMode.None);
+        foreach (TankPlayer player in players)
+        {
+            player.GetComponent<CoinWallet>().totalCoins.Value = 0;
+        }
     }
 
 }
