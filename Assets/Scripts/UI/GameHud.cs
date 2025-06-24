@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameHud : MonoBehaviour
+public class GameHud : NetworkBehaviour
 {
     [SerializeField] private GameObject startGameButton;
+    /*[SerializeField] private GameObject joinCodePanel;
+    [SerializeField] private TextMeshProUGUI joinCodeText;*/
 
-    private void Awake()
+    /*private void Start()
     {
-        startGameButton.SetActive(true);
-    }
+        if(NetworkManager.Singleton.IsHost)
+            startGameButton.SetActive(true);
 
+        //ShowJoinCode();
+    }*/
+
+    public override void OnNetworkSpawn()
+    {
+        if (NetworkManager.Singleton.IsHost)
+            startGameButton.SetActive(true);
+    }
 
     public void LeaveGame()
     {
@@ -43,7 +54,16 @@ public class GameHud : MonoBehaviour
         foreach (TankPlayer player in players)
         {
             player.GetComponent<CoinWallet>().totalCoins.Value = 0;
+            player.GetComponent<Health>().Heal(100);
         }
     }
 
+    /*public void ShowJoinCode()
+    {
+        if (HostSingelton.Instance.GameManager.JoinCode != null)
+        {
+            joinCodeText.text = $"Join Code: {HostSingelton.Instance.GameManager.JoinCode}";
+            joinCodePanel.SetActive(true);
+        }
+    }*/
 }

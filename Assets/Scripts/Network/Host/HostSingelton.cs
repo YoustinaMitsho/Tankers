@@ -7,6 +7,7 @@ public class HostSingelton : MonoBehaviour
 {
     private static HostSingelton _instance;
     public HostGameManager GameManager { get; private set; }
+
     public static HostSingelton Instance
     {
         get

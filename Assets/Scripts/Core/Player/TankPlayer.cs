@@ -11,6 +11,8 @@ public class TankPlayer : NetworkBehaviour
     [Header("References:")]
     [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _tankBody;
+    [SerializeField] private SpriteRenderer _tankTurret;
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public CoinWallet Wallet { get; private set; }
 
@@ -35,6 +37,8 @@ public class TankPlayer : NetworkBehaviour
         {
             _cinemachineVirtualCamera.Priority = _cameraPriority;
             _spriteRenderer.color = _defaultColor;
+            _tankBody.color = _defaultColor;
+            _tankTurret.color = _defaultColor;
         }
     }
 

@@ -438,10 +438,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cinemachineVirtualCamera: {fileID: 779515242283349447}
   _spriteRenderer: {fileID: 14886168207553445}
+  _tankBody: {fileID: 1547613903558845804}
+  _tankTurret: {fileID: 7895615551882190929}
   <Health>k__BackingField: {fileID: 3542914249821438407}
   <Wallet>k__BackingField: {fileID: 5772349444686641468}
   _cameraPriority: 15
-  _defaultColor: {r: 0, g: 0, b: 1, a: 1}
+  _defaultColor: {r: 0.24313726, g: 0.39607844, b: 1, a: 1}
   PlayerName:
     m_InternalValue:
       utf8LengthInBytes: 0
