@@ -9,7 +9,7 @@ public class TimerManger : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     private NetworkVariable<int> timerValue = new NetworkVariable<int>(
-    20, 
+    30, 
     NetworkVariableReadPermission.Everyone,
     NetworkVariableWritePermission.Server);
 
@@ -96,7 +96,7 @@ public class TimerManger : NetworkBehaviour
     [ClientRpc]
     private void ShowGameOverUIClientRpc(string winnerName)
     {
-        WinnerEffect.Instance.Show(winnerName);
+        WinnerEffect.Instance.ShowOnAllClients(winnerName);
     }
 
     private IEnumerator PulseTimerText()

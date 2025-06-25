@@ -8,6 +8,9 @@ public class RespawnHandler : NetworkBehaviour
 {
     [SerializeField] private TankPlayer playerPrefab;
     [SerializeField] private float KeptCoinPercent;
+    [SerializeField] private AudioSource audioSource;
+
+    private Dictionary<ulong, Action<Health, ulong>> _deathHandlers = new();
 
     public override void OnNetworkSpawn()
     {
@@ -33,20 +36,44 @@ public class RespawnHandler : NetworkBehaviour
 
     private void HandlePlayerSpawned(TankPlayer player)
     {
-        player.Health.onDie += (health) => HandlePlayerDie(player);
+        //player.Health.onDie += (health) => HandlePlayerDie(player);
+        Action<Health, ulong> handler = (health, killerId) => HandlePlayerDie(player, killerId); 
+        _deathHandlers[player.OwnerClientId] = handler;
+        player.Health.onDieWithKiller += handler;
     }
 
     private void HandlePlayerDespawned(TankPlayer player)
     {
-        player.Health.onDie -= (health) => HandlePlayerDie(player);
+        //player.Health.onDie -= (health) => HandlePlayerDie(player);
+        if (_deathHandlers.TryGetValue(player.OwnerClientId, out var handler))
+        {
+            player.Health.onDieWithKiller -= handler;
+            _deathHandlers.Remove(player.OwnerClientId);
+        }
     }
 
-    private void HandlePlayerDie(TankPlayer player)
+    private void HandlePlayerDie(TankPlayer player, ulong killerClientId)
     {
         int keptMoney = (int)(player.Wallet.totalCoins.Value * (KeptCoinPercent / 100));
+
+        ClientRpcParams rpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new List<ulong> { player.OwnerClientId, killerClientId }
+            }
+        };
+        PlayDeathSoundClientRpc(rpcParams);
+
         Destroy(player.gameObject);
 
         StartCoroutine(RespawnPlayer(player.OwnerClientId, keptMoney));
+    }
+
+    [ClientRpc]
+    private void PlayDeathSoundClientRpc(ClientRpcParams clientRpcParams = default)
+    {
+        audioSource.Play();
     }
 
     private IEnumerator RespawnPlayer(ulong ownerClientId, int keptMoney)
@@ -58,5 +85,4 @@ public class RespawnHandler : NetworkBehaviour
         playerInstance.NetworkObject.SpawnAsPlayerObject(ownerClientId);
         playerInstance.Wallet.totalCoins.Value += keptMoney;
     }
-
 }

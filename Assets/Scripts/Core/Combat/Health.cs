@@ -11,6 +11,7 @@ public class Health : NetworkBehaviour
 
     bool isDead;
     public Action<Health> onDie;
+    public Action<Health, ulong> onDieWithKiller;
 
     public override void OnNetworkSpawn()
     {
@@ -20,15 +21,20 @@ public class Health : NetworkBehaviour
 
     public void TakeDamage(int damage)
     {
-        ModifyHealth(-damage);
+        ModifyHealth(-damage, ulong.MaxValue);
+    }
+
+    public void TakeDamage(int damage, ulong attackerClientId)
+    {
+        ModifyHealth(-damage, attackerClientId);
     }
 
     public void Heal(int healAmount)
     {
-        ModifyHealth(healAmount);
+        ModifyHealth(healAmount, ulong.MaxValue);
     }
 
-    public void ModifyHealth(int health)
+    public void ModifyHealth(int health, ulong attackerClientId)
     {
         if(isDead) return;
         int newhealth = CurrentHealth.Value + health;
@@ -36,6 +42,7 @@ public class Health : NetworkBehaviour
         if (CurrentHealth.Value == 0)
         {
             onDie?.Invoke(this);
+            onDieWithKiller?.Invoke(this, attackerClientId);
             isDead = true;
         }
     }

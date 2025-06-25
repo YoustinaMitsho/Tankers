@@ -9,6 +9,7 @@ public class CoinWallet : NetworkBehaviour
     [Header("References")]
     [SerializeField] private BountyCoin coinPrefab;
     [SerializeField] private Health health;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Settings")]
     [SerializeField] private float coinSpread = 3f;
@@ -57,7 +58,7 @@ public class CoinWallet : NetworkBehaviour
         if(!IsServer) return;
 
         totalCoins.Value += coinvalue;
-        
+        audioSource.Play();
     }
 
     public void SpendCoins(int amount)

@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -21,14 +22,18 @@ public class WinnerEffect : MonoBehaviour
         PostProcessVolume ppVolumn = Camera.main.gameObject.GetComponent<PostProcessVolume>();
         ppVolumn.enabled = false;
     }
-
-
-    public void Show(string winnerName)
+    public void ShowOnAllClients(string winnerName)
     {
+        ShowClientRpc(winnerName);
+    }
 
+    [ClientRpc]
+    private void ShowClientRpc(string winnerName)
+    {
         winnerPanel.SetActive(true);
-        PostProcessVolume ppVolumn = Camera.main.gameObject.GetComponent<PostProcessVolume>();
-        ppVolumn.enabled = true;
-        winnerText.text = winnerName.ToString();
+        winnerText.text = winnerName;
+
+        Camera.main.GetComponent<PostProcessVolume>().enabled = true;
+        winnerPanel.GetComponent<AudioSource>().Play();
     }
 }

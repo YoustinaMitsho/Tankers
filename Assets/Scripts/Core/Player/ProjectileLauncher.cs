@@ -12,6 +12,7 @@ public class ProjectileLauncher : NetworkBehaviour
     [SerializeField] private GameObject _serverProjectilePrefab;
     [SerializeField] private Transform _projectileSpawnPoint;
     [SerializeField] private GameObject _muzzleFlash;
+    [SerializeField] private AudioSource _projectileSound;
     [SerializeField] private Collider2D _playerCollider;
     [SerializeField] private CoinWallet _wallet;
     [Header("Projectile Settings:")]
@@ -92,6 +93,7 @@ public class ProjectileLauncher : NetworkBehaviour
             body.velocity = body.transform.up * _projectileSpeed;
         }
         SpawnClientProjectileClientRpc(SpawnPos, direction);
+        PlayProjectileSoundClientRpc();
     }
     private void SpawnDummyProjectile(Vector3 SpawnPos, Vector3 direction)
     {
@@ -111,6 +113,12 @@ public class ProjectileLauncher : NetworkBehaviour
         {
             body.velocity = body.transform.up * _projectileSpeed;
         }
+    }
+
+    [ClientRpc]
+    private void PlayProjectileSoundClientRpc()
+    {
+        _projectileSound.Play();
     }
 
     [ClientRpc]

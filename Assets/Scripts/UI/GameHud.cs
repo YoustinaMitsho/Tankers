@@ -11,14 +11,6 @@ public class GameHud : NetworkBehaviour
     [SerializeField] private GameObject joinCodePanel;
     [SerializeField] private TextMeshProUGUI joinCodeText;
 
-    /*private void Start()
-    {
-        if(NetworkManager.Singleton.IsHost)
-            startGameButton.SetActive(true);
-
-        //ShowJoinCode();
-    }*/
-
     public override void OnNetworkSpawn()
     {
         if (NetworkManager.Singleton.IsHost)

@@ -9,6 +9,7 @@ public class HealingZone : NetworkBehaviour
 {
     [Header("Referrences")]
     [SerializeField] private Image healPowerBar;
+    [SerializeField] private AudioSource healSound;
 
     [Header("Settings")]
     [SerializeField] private float maxHealPower = 30f;
@@ -51,6 +52,7 @@ public class HealingZone : NetworkBehaviour
         if (collision.attachedRigidbody.TryGetComponent<TankPlayer>(out TankPlayer player))
         {
             playersInZone.Add(player);
+            healSound.Play();
         }
     }
 
@@ -60,6 +62,7 @@ public class HealingZone : NetworkBehaviour
         if (collision.attachedRigidbody.TryGetComponent<TankPlayer>(out TankPlayer player))
         {
             playersInZone.Remove(player);
+            healSound.Stop();
         }
     }
 
