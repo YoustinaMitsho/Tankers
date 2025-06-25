@@ -18,7 +18,7 @@ public class HostGameManager : IDisposable
 {
     private const int MaxConnections = 10;
     private Allocation allocation;
-    private string JoinCode;
+    public string JoinCode;
     private const string GameSceneName = "Game";
     private string lobbyID;
     public NetworkServer NetworkServer { get; private set; }
@@ -92,6 +92,7 @@ public class HostGameManager : IDisposable
         NetworkManager.Singleton.StartHost();
         NetworkServer.OnClientLeft += HandleClientLeft;
         NetworkManager.Singleton.SceneManager.LoadScene(GameSceneName, LoadSceneMode.Single);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator HeartBeatLobby(float waitTimeSeconds)
@@ -115,6 +116,10 @@ public class HostGameManager : IDisposable
         HostSingelton.Instance.StopCoroutine(nameof(HeartBeatLobby));
 
         await DeleteLobby();
+
+        allocation = null;
+        JoinCode = null;
+        lobbyID = null;
 
         NetworkServer.OnClientLeft -= HandleClientLeft;
         NetworkServer?.Dispose();

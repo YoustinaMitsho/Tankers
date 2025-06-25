@@ -8,8 +8,8 @@ using UnityEngine;
 public class GameHud : NetworkBehaviour
 {
     [SerializeField] private GameObject startGameButton;
-    /*[SerializeField] private GameObject joinCodePanel;
-    [SerializeField] private TextMeshProUGUI joinCodeText;*/
+    [SerializeField] private GameObject joinCodePanel;
+    [SerializeField] private TextMeshProUGUI joinCodeText;
 
     /*private void Start()
     {
@@ -22,7 +22,10 @@ public class GameHud : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (NetworkManager.Singleton.IsHost)
+        {
             startGameButton.SetActive(true);
+            ShowJoinCode();
+        }
     }
 
     public void LeaveGame()
@@ -58,12 +61,12 @@ public class GameHud : NetworkBehaviour
         }
     }
 
-    /*public void ShowJoinCode()
+    public void ShowJoinCode()
     {
         if (HostSingelton.Instance.GameManager.JoinCode != null)
         {
             joinCodeText.text = $"Join Code: {HostSingelton.Instance.GameManager.JoinCode}";
             joinCodePanel.SetActive(true);
         }
-    }*/
+    }
 }

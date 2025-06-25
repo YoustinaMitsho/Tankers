@@ -15,7 +15,7 @@ public class NetworkServer : IDisposable
     public NetworkServer(NetworkManager networkManager)
     {
         _networkManager = networkManager;
-        _networkManager.ConnectionApprovalCallback += ApprovalCheck;
+        _networkManager.ConnectionApprovalCallback = ApprovalCheck;
 
         networkManager.OnServerStarted += OnNetworkReady;
     }
@@ -68,7 +68,7 @@ public class NetworkServer : IDisposable
     {
         if (_networkManager == null) { return; }
 
-        _networkManager.ConnectionApprovalCallback -= ApprovalCheck;
+        _networkManager.ConnectionApprovalCallback = null;
         _networkManager.OnClientDisconnectCallback -= OnClientDisconnect;
         _networkManager.OnServerStarted -= OnNetworkReady;
 
