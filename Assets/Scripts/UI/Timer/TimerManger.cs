@@ -9,7 +9,7 @@ public class TimerManger : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     private NetworkVariable<int> timerValue = new NetworkVariable<int>(
-    30, 
+    120, 
     NetworkVariableReadPermission.Everyone,
     NetworkVariableWritePermission.Server);
 
