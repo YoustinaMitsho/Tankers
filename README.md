@@ -39,7 +39,7 @@ Built in Unity using modern multiplayer tools, TANKERS puts you in control of a 
 ## 🚀 Getting Started
 
 > You can either:
-- 🧪 **Download the build** from [Releases](https://github.com/YoustinaMitcho/Tankers/releases/latest)
+- 🧪 **Download the build** from [Releases](https://github.com/YoustinaMitsho/Tankers/releases/tag/v1.0)
 - 💻 Or **clone the repo** and run it in Unity
 
 ```bash
