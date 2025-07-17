@@ -69,7 +69,7 @@ The course taught me how to:
 - Sync player movement, actions, and UI across clients
 
 🧾 **Certificate of Completion:**  
-![Certificate](https://drive.google.com/file/d/1ZegEgW3gbpBpUmGEkYrC6xlNuV8s7U3u/view?usp=sharing) 
+![Certificate](Certificate.png) 
 
 ---
 
