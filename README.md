@@ -57,6 +57,34 @@ As part of my journey in multiplayer game development, I wanted to explore:
 This game is the result of weeks of learning, building, debugging, and above all — playing!
 
 
+## 🎓 Special Thanks & Course Credits
+This game was initially created by following the awesome Udemy course:
+
+📘 [**Multiplayer Game Development with Unity and Netcode**](https://www.udemy.com/course/unity-multiplayer-netcode/?couponCode=MT150725B)
+by **GameDev.tv** and **Nathan Farrer (aka Dapper Dino)**.
+
+The course taught me how to:
+- Build real-time multiplayer games using Unity’s Netcode for GameObjects
+- Use Unity Lobby, Relay, and Matchmaker to handle online connections
+- Sync player movement, actions, and UI across clients
+
+🧾 **Certificate of Completion:**  
+![Certificate](https://drive.google.com/file/d/1ZegEgW3gbpBpUmGEkYrC6xlNuV8s7U3u/view?usp=sharing) 
+
+---
+
+## ✨ My Custom Modifications
+
+After finishing the course, I extended the game to better match my creative vision:
+
+- 🎨 Improved UI and added polish to the Victory screen
+- 💥 Adjusted bullet visuals and hit feedback
+- 🎵 Added Background Music and soundeffects
+- 🏁 Enhanced the leaderboard and victory conditions
+
+---
+
+
 ## 🙌 Let's Connect
 Love the game? Want to collab, give feedback, or discuss Unity development?
 
