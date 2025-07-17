@@ -32,7 +32,7 @@ Built in Unity using modern multiplayer tools, TANKERS puts you in control of a 
 ## 📸 Gameplay Sneak Peek
 
 > 🔽 Click to watch the demo gameplay!  
-[![Watch the gameplay](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://youtu.be/n7xuWa_hQbQ)
+[![Watch the gameplay](https://img.youtube.com/vi/n7xuWa_hQbQ/0.jpg)](https://youtu.be/n7xuWa_hQbQ)
 
 ---
 
@@ -61,5 +61,8 @@ This game is the result of weeks of learning, building, debugging, and above all
 Love the game? Want to collab, give feedback, or discuss Unity development?
 
 📬 youstinamitcho@gmail.com
-🔗 [LinkedIn](www.linkedin.com/in/youstina-mitcho)
+
+🔗 [LinkedIn](https://www.linkedin.com/in/youstina-mitcho)
+
+
 🎮 Built with 💙 by Youstina Mitsho
